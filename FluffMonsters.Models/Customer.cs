@@ -8,6 +8,7 @@ namespace FluffMonsters.Models
 {
     public class Customer
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public Address HomeAddress { get; set; }
         public List<PhoneNumber> PhoneNumbers { get; set; }

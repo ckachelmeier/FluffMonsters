@@ -7,3 +7,11 @@ c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.
 c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\nunit.framework.xml
 c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\obj\Debug\FluffMonsters.Services.Test.dll
 c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\obj\Debug\FluffMonsters.Services.Test.pdb
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluentAssertions.Core.dll
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluentAssertions.dll
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluentAssertions.pdb
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluentAssertions.xml
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluentAssertions.Core.pdb
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluentAssertions.Core.xml
