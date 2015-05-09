@@ -1,0 +1,5 @@
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services\obj\Debug\FluffMonsters.Services.csprojResolveAssemblyReference.cache
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services\bin\Debug\FluffMonsters.Services.dll
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services\bin\Debug\FluffMonsters.Services.pdb
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services\obj\Debug\FluffMonsters.Services.dll
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services\obj\Debug\FluffMonsters.Services.pdb

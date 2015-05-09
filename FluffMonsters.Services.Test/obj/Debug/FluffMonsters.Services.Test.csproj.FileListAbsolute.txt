@@ -1,0 +1,9 @@
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\obj\Debug\FluffMonsters.Services.Test.csprojResolveAssemblyReference.cache
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluffMonsters.Services.Test.dll
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluffMonsters.Services.Test.pdb
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluffMonsters.Services.dll
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\nunit.framework.dll
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\FluffMonsters.Services.pdb
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\bin\Debug\nunit.framework.xml
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\obj\Debug\FluffMonsters.Services.Test.dll
+c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services.Test\obj\Debug\FluffMonsters.Services.Test.pdb
