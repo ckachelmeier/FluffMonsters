@@ -5,3 +5,5 @@ c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.
 c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Services\obj\Debug\FluffMonsters.Services.pdb
 C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services\bin\Debug\FluffMonsters.Models.dll
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Services\bin\Debug\FluffMonsters.Models.pdb
