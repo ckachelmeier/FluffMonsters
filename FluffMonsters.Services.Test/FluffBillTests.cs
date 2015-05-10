@@ -26,6 +26,33 @@ namespace FluffMonsters.Services.Test
     }
 ]";
 
+        string serviceMenu2 = @"
+[
+    {
+        'name': 'Day of Food',
+        'price': '$10.00'
+    },
+    {
+        'name': 'Chew Toy',
+        'price': '$5.00'
+    }
+]";
+        string serviceMenuSigFigPrices = @"
+[
+    {
+        'name': 'Day of Food',
+        'price': '$10.99'
+    },
+    {
+        'name': 'Day of Boarding',
+        'price': '$49.99'
+    },
+    {
+        'name': 'Chew Toy',
+        'price': '$5.99'
+    }
+]";
+
         string customerItemsMultipleItems = @"
 [
     'Day of Food',
@@ -78,76 +105,53 @@ namespace FluffMonsters.Services.Test
 ]";
         #endregion
 
-        #region test variables
-
-        //private JArray serviceMenu1;
-        //private JArray customerItemsMultipleItems;
-        //private JArray customerItemsSingleDayOfFood;
-        //private JArray customerItemsSingleDayOfBoarding;
-        //private JArray customerItemsSingleChewToy;
-        //private JArray customerItemsTwoDaysOfBoarding;
-        //private JArray customerItemsUnknownItem;
-        #endregion
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-            //serviceMenu1 = JsonConvert.DeserializeObject<JArray>(serviceMenuJson1);
-            //customerItemsMultipleItems = JsonConvert.DeserializeObject<JArray>(customerItemsJson1);
-            //customerItemsSingleDayOfFood = JsonConvert.DeserializeObject<JArray>(customerItemsJson2);
-            //customerItemsSingleDayOfBoarding = JsonConvert.DeserializeObject<JArray>(customerItemsJson3);
-            //customerItemsSingleChewToy = JsonConvert.DeserializeObject<JArray>(customerItemsJson4);
-            //customerItemsTwoDaysOfBoarding = JsonConvert.DeserializeObject<JArray>(customerItemsJson5);
-            //customerItemsUnknownItem = JsonConvert.DeserializeObject<JArray>(customerItemsJson6);
-        }
-
         [Test]
         public void GetBillTotal_Single_Day_Of_Food_Returns_Price()
         {
             var bill = new FluffBill(serviceMenu1, customerItemsSingleDayOfFood);
-            bill.getBillTotal().Should().Be(10);
+            bill.GetBillTotal().Should().Be(10);
         }
 
         [Test]
         public void GetBillTotal_Single_Day_Of_Boarding_Returns_Price()
         {
             var bill = new FluffBill(serviceMenu1, customerItemsSingleDayOfBoarding);
-            bill.getBillTotal().Should().Be(49);
+            bill.GetBillTotal().Should().Be(49);
         }
 
         [Test]
         public void GetBillTotal_Single_Chew_Toy_Returns_Price()
         {
             var bill = new FluffBill(serviceMenu1, customerItemsSingleChewToy);
-            bill.getBillTotal().Should().Be(5);
+            bill.GetBillTotal().Should().Be(5);
         }
 
         [Test]
         public void GetBillTotal_Three_Days_Of_Boarding_Gets_Discount()
         {
             var bill = new FluffBill(serviceMenu1, customerItemsThreeDaysOfBoarding);
-            bill.getBillTotal().Should().Be(132.3M);
+            bill.GetBillTotal().Should().Be(132.3M, "49.00 * 3 * 0.9 = 132.3");
         }
 
         [Test]
-        public void GetBillTotal_Unknown_Customer_Item_Returns_Bill_Of_0()
+        public void GetBillTotal_Unknown_Customer_Item_Throws_Exception()
         {
-            var bill = new FluffBill(serviceMenu1, customerItemsUnknownItem);
-            bill.getBillTotal().Should().Be(0);
+            Action action = () => new FluffBill(serviceMenu1, customerItemsUnknownItem);
+            action.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [Test]
         public void GetBillTotal_Single_Day_With_Coupon()
         {
             var bill = new FluffBill(serviceMenu1, customerItemsSingleDayWithCoupon);
-            bill.getBillTotal().Should().Be(44);
+            bill.GetBillTotal().Should().Be(44);
         }
 
         [Test]
         public void GetBillTotal_Three_Days_Of_Boarding_Gets_Discound_And_Coupon()
         {
             var bill = new FluffBill(serviceMenu1, customerItemsTwoDaysWithCoupon);
-            bill.getBillTotal().Should().Be(127.3M, "(3 days*49)* 0.9 discount - 5 for coupon = 127.3");
+            bill.GetBillTotal().Should().Be(127.3M, "(3 days*49)* 0.9 discount - 5 for coupon = 127.3");
         }
 
         [Test]
@@ -156,7 +160,34 @@ namespace FluffMonsters.Services.Test
             var bill = new FluffBill(serviceMenu1, customerItemsMultipleItems);
 
             //0.9( 50 + 10 + 196) = 230.4
-            bill.getBillTotal().Should().Be(230.4M, "((5 days of food) * $10 + (2 chew toys) *$5 + (4 days of boarding) * $49) * 90% off total");
+            bill.GetBillTotal().Should().Be(230.4M, "((5 days of food) * $10 + (2 chew toys) *$5 + (4 days of boarding) * $49) * 90% off total");
+        }
+
+        [Test]
+        public void GetBillTotal_Rounds_To_Two_Decimals()
+        {
+            var bill = new FluffBill(serviceMenuSigFigPrices, customerItemsThreeDaysOfBoarding);
+            bill.GetBillTotal().Should().Be(134.97M, "3*49.99 * 0.9 = 134.973 rounded to 134.97");
+        }
+
+        [Test]
+        [TestCase("test")]
+        [TestCase("{}")]
+        [TestCase("")]
+        public void GetBillTotal_Invalid_Menu_Json_Throws_Exception(string badJson)
+        {
+            Action action = () => new FluffBill(badJson, customerItemsMultipleItems);
+            action.ShouldThrow<ArgumentOutOfRangeException>();
+        }
+
+        [Test]
+        [TestCase("test")]
+        [TestCase("{}")]
+        [TestCase("")]
+        public void GetBillTotal_Invalid_Customer_Items_Json_Throws_Exception(string badJson)
+        {
+            Action action = () => new FluffBill(serviceMenu1, badJson);
+            action.ShouldThrow<ArgumentOutOfRangeException>();
         }
     }
 }

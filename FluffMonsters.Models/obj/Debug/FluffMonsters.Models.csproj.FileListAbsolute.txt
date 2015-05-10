@@ -1,5 +1,8 @@
-c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Models\obj\Debug\FluffMonsters.Models.csprojResolveAssemblyReference.cache
-c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Models\bin\Debug\FluffMonsters.Models.dll
-c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Models\bin\Debug\FluffMonsters.Models.pdb
-c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Models\obj\Debug\FluffMonsters.Models.dll
-c:\users\cade\documents\visual studio 2012\Projects\FluffMonsters\FluffMonsters.Models\obj\Debug\FluffMonsters.Models.pdb
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Models\bin\Debug\FluffMonsters.Models.dll.config
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Models\bin\Debug\FluffMonsters.Models.dll
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Models\bin\Debug\FluffMonsters.Models.pdb
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Models\bin\Debug\EntityFramework.dll
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Models\bin\Debug\EntityFramework.xml
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Models\obj\Debug\FluffMonsters.Models.csprojResolveAssemblyReference.cache
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Models\obj\Debug\FluffMonsters.Models.dll
+C:\Users\Cade\Documents\Visual Studio 2012\Projects\FluffMonsters\FluffMonsters.Models\obj\Debug\FluffMonsters.Models.pdb

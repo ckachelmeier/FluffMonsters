@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FluffMonsterStoreContainer" CdmEntityContainer="FluffMonsterContainer">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactMethod" ColumnName="ContactMethod" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pets">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.Pet)">
+        <MappingFragment StoreEntitySet="Pets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Breed" ColumnName="Breed" />
+          <ScalarProperty Name="Species" ColumnName="Species" />
+          <ScalarProperty Name="FavoriteToy" ColumnName="FavoriteToy" />
+          <ScalarProperty Name="WeightInKilograms" ColumnName="WeightInKilograms" />
+          <ScalarProperty Name="HeightInMeters" ColumnName="HeightInMeters" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.Address)">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhoneNumbers">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.PhoneNumber)">
+        <MappingFragment StoreEntitySet="PhoneNumbers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PhoneNumberType" ColumnName="PhoneNumberType" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visits">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.Visit)">
+        <MappingFragment StoreEntitySet="Visits">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+          <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="PetId" ColumnName="PetId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CustomerPet" TypeName="FluffMonster.CustomerPet" StoreEntitySet="CustomerPet">
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Owners_Id" />
+      </EndProperty>
+      <EndProperty Name="Pet">
+        <ScalarProperty Name="Id" ColumnName="Pets_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerAddress" TypeName="FluffMonster.CustomerAddress" StoreEntitySet="Customers">
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Address_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Address_Id" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

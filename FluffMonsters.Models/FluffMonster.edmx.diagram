@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eb35e8e2c89f4a209d3c959abe5cf4a3" Name="Diagram1" >
+        <EntityTypeShape EntityType="FluffMonster.Customer" Width="1.375" PointX="2.125" PointY="0.625" />
+        <EntityTypeShape EntityType="FluffMonster.Pet" Width="1.5" PointX="5.125" PointY="0.625" />
+        <AssociationConnector Association="FluffMonster.CustomerPet" />
+        <EntityTypeShape EntityType="FluffMonster.Address" Width="1.5" PointX="0.875" PointY="3.375" />
+        <AssociationConnector Association="FluffMonster.CustomerAddress" />
+        <EntityTypeShape EntityType="FluffMonster.PhoneNumber" Width="1.5" PointX="2.875" PointY="3.625" />
+        <AssociationConnector Association="FluffMonster.CustomerPhoneNumber" />
+        <EntityTypeShape EntityType="FluffMonster.Visit" Width="1.5" PointX="5.375" PointY="4.25" />
+        <AssociationConnector Association="FluffMonster.PetVisit" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

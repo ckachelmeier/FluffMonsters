@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FluffMonster.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FluffMonsterStoreContainer">
+    <EntitySet Name="Customers" EntityType="FluffMonster.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pets" EntityType="FluffMonster.Store.Pets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Addresses" EntityType="FluffMonster.Store.Addresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhoneNumbers" EntityType="FluffMonster.Store.PhoneNumbers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Visits" EntityType="FluffMonster.Store.Visits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomerPet" EntityType="FluffMonster.Store.CustomerPet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CustomerPet_Customer" Association="FluffMonster.Store.FK_CustomerPet_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerPet" EntitySet="CustomerPet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerPet_Pet" Association="FluffMonster.Store.FK_CustomerPet_Pet">
+      <End Role="Pet" EntitySet="Pets" />
+      <End Role="CustomerPet" EntitySet="CustomerPet" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerAddress" Association="FluffMonster.Store.CustomerAddress">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerPhoneNumber" Association="FluffMonster.Store.CustomerPhoneNumber">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+    </AssociationSet>
+    <AssociationSet Name="PetVisit" Association="FluffMonster.Store.PetVisit">
+      <End Role="Pet" EntitySet="Pets" />
+      <End Role="Visit" EntitySet="Visits" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactMethod" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Pets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Breed" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Species" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FavoriteToy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WeightInKilograms" Type="float" Nullable="false" />
+    <Property Name="HeightInMeters" Type="float" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Color" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Addresses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressLine1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressLine2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="District" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhoneNumbers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNumberType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Visits">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CheckInDate" Type="datetime" Nullable="false" />
+    <Property Name="CheckOutDate" Type="datetime" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PetId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerPet">
+    <Key>
+      <PropertyRef Name="Owners_Id" />
+      <PropertyRef Name="Pets_Id" />
+    </Key>
+    <Property Name="Owners_Id" Type="int" Nullable="false" />
+    <Property Name="Pets_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CustomerAddress">
+    <End Role="Customer" Type="FluffMonster.Store.Customers" Multiplicity="*" />
+    <End Role="Address" Type="FluffMonster.Store.Addresses" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Address_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerPhoneNumber">
+    <End Role="Customer" Type="FluffMonster.Store.Customers" Multiplicity="1" />
+    <End Role="PhoneNumber" Type="FluffMonster.Store.PhoneNumbers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PhoneNumber">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PetVisit">
+    <End Role="Pet" Type="FluffMonster.Store.Pets" Multiplicity="1" />
+    <End Role="Visit" Type="FluffMonster.Store.Visits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="PetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerPet_Customer">
+    <End Role="Customer" Type="FluffMonster.Store.Customers" Multiplicity="1" />
+    <End Role="CustomerPet" Type="FluffMonster.Store.CustomerPet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerPet">
+        <PropertyRef Name="Owners_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerPet_Pet">
+    <End Role="CustomerPet" Type="FluffMonster.Store.CustomerPet" Multiplicity="*" />
+    <End Role="Pet" Type="FluffMonster.Store.Pets" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerPet">
+        <PropertyRef Name="Pets_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="FluffMonster" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="FluffMonsterContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="FluffMonster.Customer" />
+          <EntitySet Name="Pets" EntityType="FluffMonster.Pet" />
+          <AssociationSet Name="CustomerPet" Association="FluffMonster.CustomerPet">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Pet" EntitySet="Pets" />
+          </AssociationSet>
+          <EntitySet Name="Addresses" EntityType="FluffMonster.Address" />
+          <AssociationSet Name="CustomerAddress" Association="FluffMonster.CustomerAddress">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <EntitySet Name="PhoneNumbers" EntityType="FluffMonster.PhoneNumber" />
+          <AssociationSet Name="CustomerPhoneNumber" Association="FluffMonster.CustomerPhoneNumber">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="PhoneNumber" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <EntitySet Name="Visits" EntityType="FluffMonster.Visit" />
+          <AssociationSet Name="PetVisit" Association="FluffMonster.PetVisit">
+            <End Role="Pet" EntitySet="Pets" />
+            <End Role="Visit" EntitySet="Visits" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="Pets" Relationship="FluffMonster.CustomerPet" FromRole="Customer" ToRole="Pet" />
+          <NavigationProperty Name="Address" Relationship="FluffMonster.CustomerAddress" FromRole="Customer" ToRole="Address" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="FluffMonster.CustomerPhoneNumber" FromRole="Customer" ToRole="PhoneNumber" />
+          <Property Type="String" Name="ContactMethod" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Owners" Relationship="FluffMonster.CustomerPet" FromRole="Pet" ToRole="Customer" />
+          <NavigationProperty Name="Visits" Relationship="FluffMonster.PetVisit" FromRole="Pet" ToRole="Visit" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Breed" Nullable="false" />
+          <Property Type="String" Name="Species" Nullable="false" />
+          <Property Type="String" Name="FavoriteToy" Nullable="false" />
+          <Property Type="Double" Name="WeightInKilograms" Nullable="false" />
+          <Property Type="Double" Name="HeightInMeters" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="false" />
+          <Property Type="String" Name="Color" Nullable="false" />
+        </EntityType>
+        <Association Name="CustomerPet">
+          <End Type="FluffMonster.Customer" Role="Customer" Multiplicity="*" />
+          <End Type="FluffMonster.Pet" Role="Pet" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AddressLine1" Nullable="false" />
+          <Property Type="String" Name="AddressLine2" Nullable="false" />
+          <Property Type="String" Name="District" Nullable="false" />
+          <Property Type="String" Name="PostalCode" Nullable="false" />
+          <Property Type="String" Name="Country" Nullable="false" />
+        </EntityType>
+        <Association Name="CustomerAddress">
+          <End Type="FluffMonster.Customer" Role="Customer" Multiplicity="*" />
+          <End Type="FluffMonster.Address" Role="Address" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="PhoneNumber">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PhoneNumberType" Nullable="false" />
+          <Property Type="String" Name="Number" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="FluffMonster.CustomerPhoneNumber" FromRole="PhoneNumber" ToRole="Customer" />
+          <Property Type="Int32" Name="CustomerId" Nullable="false" />
+        </EntityType>
+        <Association Name="CustomerPhoneNumber">
+          <End Type="FluffMonster.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="FluffMonster.PhoneNumber" Role="PhoneNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhoneNumber">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="CheckInDate" Nullable="false" />
+          <Property Type="DateTime" Name="CheckOutDate" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="false" />
+          <NavigationProperty Name="Pet" Relationship="FluffMonster.PetVisit" FromRole="Visit" ToRole="Pet" />
+          <Property Type="Int32" Name="PetId" Nullable="false" />
+        </EntityType>
+        <Association Name="PetVisit">
+          <End Type="FluffMonster.Pet" Role="Pet" Multiplicity="1" />
+          <End Type="FluffMonster.Visit" Role="Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="PetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FluffMonsterStoreContainer" CdmEntityContainer="FluffMonsterContainer">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactMethod" ColumnName="ContactMethod" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pets">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.Pet)">
+        <MappingFragment StoreEntitySet="Pets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Breed" ColumnName="Breed" />
+          <ScalarProperty Name="Species" ColumnName="Species" />
+          <ScalarProperty Name="FavoriteToy" ColumnName="FavoriteToy" />
+          <ScalarProperty Name="WeightInKilograms" ColumnName="WeightInKilograms" />
+          <ScalarProperty Name="HeightInMeters" ColumnName="HeightInMeters" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.Address)">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhoneNumbers">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.PhoneNumber)">
+        <MappingFragment StoreEntitySet="PhoneNumbers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PhoneNumberType" ColumnName="PhoneNumberType" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visits">
+      <EntityTypeMapping TypeName="IsTypeOf(FluffMonster.Visit)">
+        <MappingFragment StoreEntitySet="Visits">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+          <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="PetId" ColumnName="PetId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CustomerPet" TypeName="FluffMonster.CustomerPet" StoreEntitySet="CustomerPet">
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Owners_Id" />
+      </EndProperty>
+      <EndProperty Name="Pet">
+        <ScalarProperty Name="Id" ColumnName="Pets_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerAddress" TypeName="FluffMonster.CustomerAddress" StoreEntitySet="Customers">
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Address_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Address_Id" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
